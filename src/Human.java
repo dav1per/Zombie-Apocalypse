@@ -192,10 +192,6 @@ public class Human {
             x = xCheck;
             y = yCheck;
         }else{
-            if(rand.nextInt(100) + 1 < 20){
-                direction += 1;
-            }
-
             switch(direction % 4){
                 case 0:
                     xDestination = x;
@@ -214,7 +210,7 @@ public class Human {
                     yDestination = y;
                     break;
             }
-            distanceCheck = Math.sqrt((mapSize * mapSize) * 2);
+            distanceCheck = Math.sqrt((mapSize * mapSize) * 2) * 1000;
             xCheck = x;
             yCheck = y;
 
@@ -308,7 +304,9 @@ public class Human {
             x = xCheck;
             y = yCheck;
 
-
+            if(rand.nextInt(100) + 1 < 20){
+                direction += 1;
+            }
         }
 
 

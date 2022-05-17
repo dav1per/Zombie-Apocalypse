@@ -34,4 +34,39 @@ public class Test {
         assertEquals(3, human1.y);
         assertEquals(0, human1.x);
     }
+    @org.junit.jupiter.api.Test
+    public void HumanMoveTest_3(){
+        int mapSize = 3;
+        Area Map[][] = new Area[mapSize][mapSize];
+        for(int i = 0; i < mapSize; i++){
+            for(int j = 0; j < mapSize; j++){
+                Map[i][j] = new Land();
+            }
+        }
+        
+        Human human1 = new Human(30, 1, 1);
+        int xExpected = 0;
+        int yExpected = 0;
+        switch(human1.direction){
+            case 0:
+                xExpected = 1;
+                yExpected = 2;
+                break;
+            case 1:
+                xExpected = 0;
+                yExpected = 1;
+                break;
+            case 2:
+                xExpected = 1;
+                yExpected = 0;
+                break;
+            case 3:
+                xExpected = 2;
+                yExpected = 1;
+                break;
+        }
+        human1.selfMove(Map, mapSize);
+        assertEquals(yExpected, human1.y);
+        assertEquals(xExpected, human1.x);
+    }
 }
