@@ -14,6 +14,7 @@ public class Human {
     int hungerPoints;
     int visionRange;
     int direction;
+    int liftingCapacity;
     boolean alive;
     Random rand = new Random();
 
@@ -21,6 +22,7 @@ public class Human {
     int visitedHouses = 5;
     int xVisitedHouses[] = new int [visitedHouses];
     int yVisitedHouses[] = new int [visitedHouses];
+
 
 
 
@@ -33,6 +35,7 @@ public class Human {
         healthPoints = 100;
         hungerPoints = 0;
         visionRange = 10;
+        liftingCapacity = 5;
         alive = true;
         direction = rand.nextInt(4);
         /*
@@ -42,6 +45,10 @@ public class Human {
         2 - South
         3 - East
          */
+        for(int i = 0; i < visitedHouses; i++){
+            xVisitedHouses[i] = -1;
+            yVisitedHouses[i] = -1;
+        }
     }
 
     public void selfCheck(){
@@ -68,7 +75,7 @@ public class Human {
             for(int j = 0; j < mapSize; j++){
                 if(Math.pow(i - x, 2) + Math.pow(j - y, 2) < Math.pow(visionRange, 2)){
                     if(Objects.equals(Map[i][j].getType(), "House")) {
-                        if (i != x && j != y) {
+                        if (!(i == x && j == y)) {
                             for(int c = 0; c < visitedHouses; c++){
                                 if(i != xVisitedHouses[c] && j != xVisitedHouses[c]){
                                     //House found
@@ -86,9 +93,7 @@ public class Human {
                 }
             }
         }
-
         int xCheck, yCheck;
-
         if(houseFound){
             /*
             Checking 8 possible moves, choosing the best one to achieve the destination.
@@ -98,7 +103,7 @@ public class Human {
             yCheck = y;
 
             //Move no. 1
-            if(x + 1 < mapSize && 0 < x + 1 && 0 < y && y < mapSize){
+            if(x + 1 < mapSize && 0 <= x + 1 && 0 <= y && y < mapSize){
                 if(distanceCheck > Math.sqrt(Math.pow(xDestination - (x + 1), 2) + Math.pow(yDestination - y, 2))){
                     if(!Objects.equals(Map[x + 1][y].getType(), "Water")){
                         distanceCheck = Math.sqrt(Math.pow(xDestination - (x + 1), 2) + Math.pow(yDestination - y, 2));
@@ -109,7 +114,7 @@ public class Human {
             }
 
             //Move no. 2
-            if(x + 1 < mapSize && 0 < x + 1 && 0 < y + 1 && y + 1 < mapSize){
+            if(x + 1 < mapSize && 0 <= x + 1 && 0 <= y + 1 && y + 1 < mapSize){
                 if(distanceCheck > Math.sqrt(Math.pow(xDestination - (x + 1), 2) + Math.pow(yDestination - (y + 1), 2))){
                     if(!Objects.equals(Map[x + 1][y + 1].getType(), "Water")){
                         distanceCheck = Math.sqrt(Math.pow(xDestination - (x + 1), 2) + Math.pow(yDestination - (y + 1), 2));
@@ -120,7 +125,7 @@ public class Human {
             }
 
             //Move no. 3
-            if(x + 1 < mapSize && 0 < x + 1 && 0 < y - 1 && y - 1 < mapSize){
+            if(x + 1 < mapSize && 0 <= x + 1 && 0 <= y - 1 && y - 1 < mapSize){
                 if(distanceCheck > Math.sqrt(Math.pow(xDestination - (x + 1), 2) + Math.pow(yDestination - (y - 1), 2))){
                     if(!Objects.equals(Map[x + 1][y - 1].getType(), "Water")){
                         distanceCheck = Math.sqrt(Math.pow(xDestination - (x + 1), 2) + Math.pow(yDestination - (y - 1), 2));
@@ -131,7 +136,7 @@ public class Human {
             }
 
             //Move no. 4
-            if(x - 1 < mapSize && 0 < x - 1 && 0 < y && y < mapSize){
+            if(x - 1 < mapSize && 0 <= x - 1 && 0 <= y && y < mapSize){
                 if(distanceCheck > Math.sqrt(Math.pow(xDestination - (x - 1), 2) + Math.pow(yDestination - y, 2))){
                     if(!Objects.equals(Map[x - 1][y].getType(), "Water")){
                         distanceCheck = Math.sqrt(Math.pow(xDestination - (x - 1), 2) + Math.pow(yDestination - y, 2));
@@ -142,7 +147,7 @@ public class Human {
             }
 
             //Move no. 5
-            if(x - 1 < mapSize && 0 < x - 1 && 0 < y + 1 && y + 1 < mapSize){
+            if(x - 1 < mapSize && 0 <= x - 1 && 0 <= y + 1 && y + 1 < mapSize){
                 if(distanceCheck > Math.sqrt(Math.pow(xDestination - (x - 1), 2) + Math.pow(yDestination - (y + 1), 2))){
                     if(!Objects.equals(Map[x - 1][y + 1].getType(), "Water")){
                         distanceCheck = Math.sqrt(Math.pow(xDestination - (x - 1), 2) + Math.pow(yDestination - (y + 1), 2));
@@ -153,7 +158,7 @@ public class Human {
             }
 
             //Move no. 6
-            if(x - 1 < mapSize && 0 < x - 1 && 0 < y - 1 && y - 1 < mapSize){
+            if(x - 1 < mapSize && 0 <= x - 1 && 0 <= y - 1 && y - 1 < mapSize){
                 if(distanceCheck > Math.sqrt(Math.pow(xDestination - (x - 1), 2) + Math.pow(yDestination - (y - 1), 2))){
                     if(!Objects.equals(Map[x - 1][y - 1].getType(), "Water")){
                         distanceCheck = Math.sqrt(Math.pow(xDestination - (x - 1), 2) + Math.pow(yDestination - (y - 1), 2));
@@ -164,7 +169,7 @@ public class Human {
             }
 
             //Move no. 7
-            if(x < mapSize && 0 < x && 0 < y - 1 && y - 1 < mapSize){
+            if(x < mapSize && 0 <= x && 0 <= y - 1 && y - 1 < mapSize){
                 if(distanceCheck > Math.sqrt(Math.pow(xDestination - x, 2) + Math.pow(yDestination - (y - 1), 2))){
                     if(!Objects.equals(Map[x][y - 1].getType(), "Water")){
                         distanceCheck = Math.sqrt(Math.pow(xDestination - x, 2) + Math.pow(yDestination - (y - 1), 2));
@@ -175,7 +180,7 @@ public class Human {
             }
 
             //Move no. 8
-            if(x < mapSize && 0 < x && 0 < y + 1 && y + 1 < mapSize){
+            if(x < mapSize && 0 <= x && 0 <= y + 1 && y + 1 < mapSize){
                 if(distanceCheck > Math.sqrt(Math.pow(xDestination - x, 2) + Math.pow(yDestination - (y + 1), 2))){
                     if(!Objects.equals(Map[x][y + 1].getType(), "Water")){
                         distanceCheck = Math.sqrt(Math.pow(xDestination - x, 2) + Math.pow(yDestination - (y + 1), 2));
@@ -214,7 +219,7 @@ public class Human {
             yCheck = y;
 
             //Move no. 1
-            if(x + 1 < mapSize && 0 < x + 1 && 0 < y && y < mapSize){
+            if(x + 1 < mapSize && 0 <= x + 1 && 0 <= y && y < mapSize){
                 if(distanceCheck > Math.sqrt(Math.pow(xDestination - (x + 1), 2) + Math.pow(yDestination - y, 2))){
                     if(!Objects.equals(Map[x + 1][y].getType(), "Water")){
                         distanceCheck = Math.sqrt(Math.pow(xDestination - (x + 1), 2) + Math.pow(yDestination - y, 2));
@@ -225,7 +230,7 @@ public class Human {
             }
 
             //Move no. 2
-            if(x + 1 < mapSize && 0 < x + 1 && 0 < y + 1 && y + 1 < mapSize){
+            if(x + 1 < mapSize && 0 <= x + 1 && 0 <= y + 1 && y + 1 < mapSize){
                 if(distanceCheck > Math.sqrt(Math.pow(xDestination - (x + 1), 2) + Math.pow(yDestination - (y + 1), 2))){
                     if(!Objects.equals(Map[x + 1][y + 1].getType(), "Water")){
                         distanceCheck = Math.sqrt(Math.pow(xDestination - (x + 1), 2) + Math.pow(yDestination - (y + 1), 2));
@@ -236,7 +241,7 @@ public class Human {
             }
 
             //Move no. 3
-            if(x + 1 < mapSize && 0 < x + 1 && 0 < y - 1 && y - 1 < mapSize){
+            if(x + 1 < mapSize && 0 <= x + 1 && 0 <= y - 1 && y - 1 < mapSize){
                 if(distanceCheck > Math.sqrt(Math.pow(xDestination - (x + 1), 2) + Math.pow(yDestination - (y - 1), 2))){
                     if(!Objects.equals(Map[x + 1][y - 1].getType(), "Water")){
                         distanceCheck = Math.sqrt(Math.pow(xDestination - (x + 1), 2) + Math.pow(yDestination - (y - 1), 2));
@@ -247,7 +252,7 @@ public class Human {
             }
 
             //Move no. 4
-            if(x - 1 < mapSize && 0 < x - 1 && 0 < y && y < mapSize){
+            if(x - 1 < mapSize && 0 <= x - 1 && 0 <= y && y < mapSize){
                 if(distanceCheck > Math.sqrt(Math.pow(xDestination - (x - 1), 2) + Math.pow(yDestination - y, 2))){
                     if(!Objects.equals(Map[x - 1][y].getType(), "Water")){
                         distanceCheck = Math.sqrt(Math.pow(xDestination - (x - 1), 2) + Math.pow(yDestination - y, 2));
@@ -258,7 +263,7 @@ public class Human {
             }
 
             //Move no. 5
-            if(x - 1 < mapSize && 0 < x - 1 && 0 < y + 1 && y + 1 < mapSize){
+            if(x - 1 < mapSize && 0 <= x - 1 && 0 <= y + 1 && y + 1 < mapSize){
                 if(distanceCheck > Math.sqrt(Math.pow(xDestination - (x - 1), 2) + Math.pow(yDestination - (y + 1), 2))){
                     if(!Objects.equals(Map[x - 1][y + 1].getType(), "Water")){
                         distanceCheck = Math.sqrt(Math.pow(xDestination - (x - 1), 2) + Math.pow(yDestination - (y + 1), 2));
@@ -269,7 +274,7 @@ public class Human {
             }
 
             //Move no. 6
-            if(x - 1 < mapSize && 0 < x - 1 && 0 < y - 1 && y - 1 < mapSize){
+            if(x - 1 < mapSize && 0 <= x - 1 && 0 <= y - 1 && y - 1 < mapSize){
                 if(distanceCheck > Math.sqrt(Math.pow(xDestination - (x - 1), 2) + Math.pow(yDestination - (y - 1), 2))){
                     if(!Objects.equals(Map[x - 1][y - 1].getType(), "Water")){
                         distanceCheck = Math.sqrt(Math.pow(xDestination - (x - 1), 2) + Math.pow(yDestination - (y - 1), 2));
@@ -280,7 +285,7 @@ public class Human {
             }
 
             //Move no. 7
-            if(x < mapSize && 0 < x && 0 < y - 1 && y - 1 < mapSize){
+            if(x < mapSize && 0 <= x && 0 <= y - 1 && y - 1 < mapSize){
                 if(distanceCheck > Math.sqrt(Math.pow(xDestination - x, 2) + Math.pow(yDestination - (y - 1), 2))){
                     if(!Objects.equals(Map[x][y - 1].getType(), "Water")){
                         distanceCheck = Math.sqrt(Math.pow(xDestination - x, 2) + Math.pow(yDestination - (y - 1), 2));
@@ -291,7 +296,7 @@ public class Human {
             }
 
             //Move no. 8
-            if(x < mapSize && 0 < x && 0 < y + 1 && y + 1 < mapSize){
+            if(x < mapSize && 0 <= x && 0 <= y + 1 && y + 1 < mapSize){
                 if(distanceCheck > Math.sqrt(Math.pow(xDestination - x, 2) + Math.pow(yDestination - (y + 1), 2))){
                     if(!Objects.equals(Map[x][y + 1].getType(), "Water")){
                         distanceCheck = Math.sqrt(Math.pow(xDestination - x, 2) + Math.pow(yDestination - (y + 1), 2));
@@ -302,6 +307,7 @@ public class Human {
             }
             x = xCheck;
             y = yCheck;
+
 
         }
 
