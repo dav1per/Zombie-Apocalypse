@@ -69,4 +69,26 @@ public class Test {
         assertEquals(yExpected, human1.y);
         assertEquals(xExpected, human1.x);
     }
+     
+    @org.junit.jupiter.api.Test
+    public void ZombieMoveTest1(){
+        int mapSize = 7;
+        ArrayList<Human> humans = new ArrayList<>();
+        humans.add(new Human(30,3,2));
+        humans.add(new Human(30,2,1));
+        humans.add(new Human(30, 3,6));
+
+        Area Map[][] = new Area[mapSize][mapSize];
+        for(int i = 0; i < mapSize; i++){
+            for(int j = 0; j < mapSize; j++){
+                Map[i][j] = new Land();
+            }
+        }
+        Zombie zombie1 = new Zombie(35,4,6);
+
+        zombie1.selfMove(Map, mapSize, humans);
+        assertEquals(3, zombie1.x);
+        assertEquals(6, zombie1.y);
+
+    }
 }
