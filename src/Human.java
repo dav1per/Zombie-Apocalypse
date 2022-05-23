@@ -14,10 +14,11 @@ public class Human {
     int hungerPoints;
     int visionRange;
     int direction;
-    int liftingCapacity;
+    int liftingCapacity = 5;
     boolean alive;
     Random rand = new Random();
-
+    ArrayList<Food> backpack = new ArrayList<>();
+    Weapon weapon = new Weapon(0);
     //Saved x, y coordinates of 5 last visited houses
     int visitedHouses = 5;
     int xVisitedHouses[] = new int [visitedHouses];
@@ -52,14 +53,54 @@ public class Human {
     }
 
     public void selfCheck(){
+        if(hungerPoints == 100){
+            healthPoints -= 10;
+        }
         if(healthPoints <= 0){
             alive = false;
             humanPopulation -= 1;
         }
     }
 
+    public void getHungry(){
+        if(hungerPoints < 100){
+            hungerPoints += 10;
+            if(hungerPoints > 100){
+                hungerPoints = 100;
+            }
+        }
+    }
+
+    public void lootHouses(Area Map[][]){
+        if(Map[x][y].getType() == "House"){
+            ArrayList<Item> availableLoot = Map[x][y].getAvailableLoot();
+            for(int i = 0; i < availableLoot.size(); i++){
+                if(availableLoot.get(i).getType() == "Weapon"){
+                    //Comparing weapon combat stat in order to choose the stronger one
+                    if(availableLoot.get(i).getStat() > weapon.combatStat){
+                        availableLoot.set(i, weapon);
+                        weapon = new Weapon(availableLoot.get(i).getStat());
+                    }else{
+                        if(backpack.size() < liftingCapacity){
+                            backpack.set(i, new Food(availableLoot.get(i).getStat()));
+                        }
+                    }
+                }
+
+            }
+            Map[x][y].updateAvailableLoot(availableLoot);
+            //Saving the coordinates of the last five visited houses to prevent humans from looting the same house twice
+            for(int j = 1; j < visitedHouses; j++){
+                xVisitedHouses[j] = xVisitedHouses[j - 1];
+                yVisitedHouses[j] = yVisitedHouses[j - 1];
+            }
+            xVisitedHouses[0] = x;
+            yVisitedHouses[0] = y;
+        }
+    }
+
     public double getCombatStat(){
-        return combatStat * healthPoints / 100;
+        return (combatStat + weapon.combatStat) * healthPoints / 100;
     }
 
     public void selfMove(Area Map[][], int mapSize){
