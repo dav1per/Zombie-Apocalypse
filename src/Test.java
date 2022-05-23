@@ -183,6 +183,7 @@ public class Test {
         Map[0][0].updateAvailableLoot(availableLoot);
         Human human1 = new Human(25, 0, 0);
         human1.lootHouses(Map);
+
     }
 
     @org.junit.jupiter.api.Test
@@ -200,10 +201,5 @@ public class Test {
             }
         }
         Zombie zombie1 = new Zombie(35, 4, 6);
-
-        zombie1.selfMove(Map, mapSize, humans);
-        assertEquals(3, zombie1.x);
-        assertEquals(6, zombie1.y);
-
     }
 }
