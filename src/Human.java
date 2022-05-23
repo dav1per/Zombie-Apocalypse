@@ -15,7 +15,7 @@ public class Human {
     int visionRange;
     int direction;
     int liftingCapacity = 5;
-    boolean alive;
+    boolean alive = true;
     Random rand = new Random();
     ArrayList<Food> backpack = new ArrayList<>();
     Weapon weapon = new Weapon(0);
@@ -23,10 +23,6 @@ public class Human {
     int visitedHouses = 5;
     int xVisitedHouses[] = new int [visitedHouses];
     int yVisitedHouses[] = new int [visitedHouses];
-
-
-
-
 
     Human(int combatStat, int x, int y){
         this.combatStat = combatStat;
@@ -37,7 +33,6 @@ public class Human {
         hungerPoints = 0;
         visionRange = 10;
         liftingCapacity = 5;
-        alive = true;
         direction = rand.nextInt(4);
         /*
         Direction of movement
@@ -78,16 +73,19 @@ public class Human {
                 if(availableLoot.get(i).getType() == "Weapon"){
                     //Comparing weapon combat stat in order to choose the stronger one
                     if(availableLoot.get(i).getStat() > weapon.combatStat){
-                        availableLoot.set(i, weapon);
+                        int oldWeaponCombatStat = weapon.combatStat;
                         weapon = new Weapon(availableLoot.get(i).getStat());
-                    }else{
-                        if(backpack.size() < liftingCapacity){
-                            backpack.set(i, new Food(availableLoot.get(i).getStat()));
-                        }
+                        availableLoot.set(i, new Weapon(oldWeaponCombatStat));
+                    }
+                }else{
+                    if(backpack.size() < liftingCapacity){
+                        backpack.add(new Food(availableLoot.get(i).getStat()));
+                        availableLoot.remove(i);
+                        i -= 1;
                     }
                 }
-
             }
+
             Map[x][y].updateAvailableLoot(availableLoot);
             //Saving the coordinates of the last five visited houses to prevent humans from looting the same house twice
             for(int j = 1; j < visitedHouses; j++){
