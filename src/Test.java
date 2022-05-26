@@ -1,5 +1,4 @@
 import org.junit.jupiter.api.Assertions;
-
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
@@ -202,4 +201,32 @@ public class Test {
         }
         Zombie zombie1 = new Zombie(35, 4, 6);
     }
+
+    @org.junit.jupiter.api.Test
+    public void Fightcheck(){
+        int mapSize = 7;
+        ArrayList<Human> humans = new ArrayList<>();
+        humans.add(new Human(30, 3, 2));
+        humans.add(new Human(30, 2, 1));
+        humans.add(new Human(30, 3, 6));
+
+        ArrayList<Zombie> zombies = new ArrayList<>();
+        zombies.add(new Zombie(25, 1, 2));
+        zombies.add(new Zombie(32, 2, 1));
+        zombies.add(new Zombie(20, 4, 6));
+
+        Fight fight= new Fight();
+
+        fight.fight(humans, zombies);
+        System.out.println("ilość ludzi: " + humans.size());
+        System.out.println("ilosc ludzi zabita przez zombie: " + Human.killedByZombie);
+        System.out.println("liczba zombie: " + zombies.size());
+
+        for(Human human : humans){
+            System.out.println("human x: "+ human.x + " y: " + human.y);
+        }
+
+    }
 }
+
+
