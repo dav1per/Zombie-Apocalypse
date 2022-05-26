@@ -51,12 +51,29 @@ public class Human {
         if(hungerPoints == 100){
             healthPoints -= 10;
         }
+        if(hungerPoints == 0 && healthPoints < 100){
+            healthPoints += 5;
+            if(healthPoints > 100){
+                healthPoints = 100;
+            }
+        }
         if(healthPoints <= 0){
             alive = false;
             humanPopulation -= 1;
+            starvedToDeath += 1;
         }
     }
-
+    public void eatIfHungry(){
+        if(hungerPoints > 0){
+            while(backpack.size() > 0 && hungerPoints > 0){
+                hungerPoints -= backpack.get(0).getStat();
+                backpack.remove(0);
+                if(hungerPoints < 0){
+                    hungerPoints = 0;
+                }
+            }
+        }
+    }
     public void getHungry(){
         if(hungerPoints < 100){
             hungerPoints += 10;
@@ -349,6 +366,14 @@ public class Human {
         }
 
 
+    }
+
+    public void humanEverydayRoutine(Area Map[][], int mapSize){
+        getHungry();
+        selfCheck();
+        selfMove(Map, mapSize);
+        lootHouses(Map);
+        eatIfHungry();
     }
 
 }
