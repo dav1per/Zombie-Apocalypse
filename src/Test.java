@@ -8,7 +8,7 @@ public class Test {
     public void HumanMoveTest_1() {
         int mapSize = 2;
         Area Map[][] = new Area[mapSize][mapSize];
-        Map[0][0] = new House(0, 1);
+        Map[0][0] = new House(2, 1);
         Map[0][1] = new Land();
         Map[1][0] = new Land();
         Map[1][1] = new Land();
@@ -22,10 +22,10 @@ public class Test {
     public void HumanMoveTest_2() {
         int mapSize = 4;
         Area Map[][] = new Area[mapSize][mapSize];
-        Map[0][0] = new House(0, 1);
+        Map[0][0] = new House(2, 1);
         Map[0][1] = new Land();
         Map[0][2] = new Land();
-        Map[0][3] = new House(0, 1);
+        Map[0][3] = new House(2, 1);
 
         for (int i = 1; i < mapSize; i++) {
             for (int j = 0; j < mapSize; j++) {
@@ -86,7 +86,7 @@ public class Test {
         }
         Map[0][2] = new Land();
         Map[1][2] = new Land();
-        Map[2][2] = new House(0, 1);
+        Map[2][2] = new House(2, 1);
         Human human1 = new Human(30, 0, 0);
         human1.selfMove(Map, mapSize);
         assertEquals(1, human1.y);
@@ -105,7 +105,7 @@ public class Test {
         Map[2][1] = new Water();
         Map[0][2] = new Land();
         Map[1][2] = new Land();
-        Map[2][2] = new House(0, 1);
+        Map[2][2] = new House(2, 1);
         Human human1 = new Human(30, 2, 0);
         human1.selfMove(Map, mapSize);
         assertEquals(0, human1.y);
@@ -133,7 +133,7 @@ public class Test {
         int mapSize = 1;
         Area Map[][] = new Area[mapSize][mapSize];
         Human human1 = new Human(30, 0, 0);
-        Map[0][0] = new House(0, 0);
+        Map[0][0] = new House(2, 0);
         ArrayList<Item> availableLoot = new ArrayList<Item>();
         availableLoot.add(new Weapon(30));
         Map[0][0].updateAvailableLoot(availableLoot);
@@ -146,7 +146,7 @@ public class Test {
         int mapSize = 1;
         Area Map[][] = new Area[mapSize][mapSize];
         Human human1 = new Human(30, 0, 0);
-        Map[0][0] = new House(0, 0);
+        Map[0][0] = new House(2, 0);
         ArrayList<Item> availableLoot = new ArrayList<Item>();
         availableLoot.add(new Weapon(30));
         availableLoot.add(new Weapon(25));
@@ -161,7 +161,7 @@ public class Test {
     public void HumanLootHouses3() {
         int mapSize = 1;
         Area Map[][] = new Area[mapSize][mapSize];
-        Map[0][0] = new House(0, 0);
+        Map[0][0] = new House(2, 0);
         ArrayList<Item> availableLoot = new ArrayList<Item>();
         availableLoot.add(new Weapon(30));
         availableLoot.add(new Weapon(25));
@@ -174,7 +174,7 @@ public class Test {
     public void HumanLootHouses4() {
         int mapSize = 1;
         Area Map[][] = new Area[mapSize][mapSize];
-        Map[0][0] = new House(0, 0);
+        Map[0][0] = new House(2, 0);
         ArrayList<Item> availableLoot = new ArrayList<Item>();
         availableLoot.add(new Weapon(30));
         availableLoot.add(new Weapon(25));
