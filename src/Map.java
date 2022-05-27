@@ -3,19 +3,15 @@ import java.util.Random;
 public class Map {
     int mapSize;
     double percentageOfHouses;
-    int minNumberOfHumansPerHouse;
-    int maxNumberOfHumansPerHouse;
     Random rand = new Random();
 
     //House parameters
     int houseLootAmountRange;
     double houseWeaponLootPercentage;
 
-    Map(int mapSize, double percentageOfHouses, int minNumberOfHumansPerHouse, int maxNumberOfHumansPerHouse, int houseLootAmountRange, double houseWeaponLootPercentage){
+    Map(int mapSize, double percentageOfHouses, int houseLootAmountRange, double houseWeaponLootPercentage){
         this.mapSize = mapSize;
         this.percentageOfHouses = percentageOfHouses;
-        this.minNumberOfHumansPerHouse = minNumberOfHumansPerHouse;
-        this.maxNumberOfHumansPerHouse = maxNumberOfHumansPerHouse;
         this.houseLootAmountRange = houseLootAmountRange;
         this.houseWeaponLootPercentage = houseWeaponLootPercentage;
     }
