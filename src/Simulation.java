@@ -32,6 +32,24 @@ public class Simulation {
         Map = map1.Generator();
     }
 
+    public void Epoch(){
+        //Epoch counter
+        epoch += 1;
+        for(Human human : humans){
+            human.humanEverydayRoutine(Map, mapSize);
+        }
+
+        for(Zombie zombie : zombies){
+            zombie.selfMove(Map, mapSize, humans);
+        }
+
+    }
+
+    public void Simulation(){
+        while(epoch < numberOfEpochs + 1 && zombies.size() > 0 && humans.size() > 0){
+            Epoch();
+        }
+    }
 
 
 
