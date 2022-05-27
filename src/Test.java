@@ -200,6 +200,10 @@ public class Test {
             }
         }
         Zombie zombie1 = new Zombie(35, 4, 6);
+        zombie1.selfMove(Map, mapSize, humans);
+        assertEquals(6, zombie1.y);
+        assertEquals(3, zombie1.x);
+
     }
 
     @org.junit.jupiter.api.Test
