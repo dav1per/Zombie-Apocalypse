@@ -182,7 +182,27 @@ public class Test {
         Map[0][0].updateAvailableLoot(availableLoot);
         Human human1 = new Human(25, 0, 0);
         human1.lootHouses(Map);
+        Assertions.assertEquals(75, human1.getCombatStat());
 
+    }
+
+    @org.junit.jupiter.api.Test
+    public void HumanGetHungry1() {
+        Human human1 = new Human(25, 0, 0);
+        human1.getHungry();
+        Assertions.assertEquals(10, human1.hungerPoints);
+    }
+
+    @org.junit.jupiter.api.Test
+    public void HumanEat1() {
+        Human human1 = new Human(25, 0, 0);
+        human1.getHungry();
+        int mapSize = 1;
+        Area Map[][] = new Area[mapSize][mapSize];
+        Map[0][0] = new House(10, 0);
+        human1.lootHouses(Map);
+        human1.eatIfHungry();
+        Assertions.assertEquals(0, human1.hungerPoints);
     }
 
     @org.junit.jupiter.api.Test
@@ -204,6 +224,23 @@ public class Test {
         assertEquals(6, zombie1.y);
         assertEquals(3, zombie1.x);
 
+    }
+
+    @org.junit.jupiter.api.Test
+    public void SimulationTest1() {
+        Simulation simulation1 = new Simulation(
+                1,
+                0,
+                1,
+                30,
+                30,
+                0.50,
+                5,
+                0.1,
+                5000
+        );
+        simulation1.Simulation();
+        assertEquals(0, simulation1.epoch);
     }
 
     @org.junit.jupiter.api.Test

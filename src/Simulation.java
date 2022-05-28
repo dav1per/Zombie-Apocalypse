@@ -17,8 +17,10 @@ public class Simulation {
             int zombieCombatStat,
             double percentageOfHouses,
             int houseLootAmountRange,
-            double houseWeaponLootPercentage
+            double houseWeaponLootPercentage,
+            int numberOfEpochs
     ){
+        this.numberOfEpochs = numberOfEpochs;
         this.mapSize = mapSize;
         for(int i = 0; i < humanPopulation; i++){
             humans.add(new Human(humanCombatStat, rand.nextInt(mapSize), rand.nextInt(mapSize)));

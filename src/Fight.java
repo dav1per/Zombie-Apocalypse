@@ -9,7 +9,7 @@ public class Fight {
                 for(Zombie zombie : zombies)
                     if(human.x== zombie.x)
                         if(human.y == zombie.y)
-                            if(zombie.combatStat > human.combatStat){
+                            if(zombie.combatStat > human.getCombatStat()){
                                 human.healthPoints = 0;
                                 human.humanPopulation -=1;
                                 humans.remove(human);
@@ -24,4 +24,6 @@ public class Fight {
                 }
             }
         }
+
+
 }
