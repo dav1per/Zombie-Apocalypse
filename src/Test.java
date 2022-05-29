@@ -245,20 +245,23 @@ public class Test {
 
     @org.junit.jupiter.api.Test
     public void Fightcheck(){
-        int mapSize = 7;
+       int mapSize = 7;
         ArrayList<Human> humans = new ArrayList<>();
         humans.add(new Human(30, 3, 2));
         humans.add(new Human(30, 2, 1));
-        humans.add(new Human(30, 3, 6));
+        humans.add(new Human(30, 3, 2));
+        humans.add(new Human(30, 3, 2));
+        humans.add(new Human(30, 2, 1));
+        humans.add(new Human(30, 3, 1));
 
         ArrayList<Zombie> zombies = new ArrayList<>();
-        zombies.add(new Zombie(25, 1, 2));
-        zombies.add(new Zombie(32, 2, 1));
+        zombies.add(new Zombie(65, 2, 1));
+        zombies.add(new Zombie(95, 3, 2));
         zombies.add(new Zombie(20, 4, 6));
 
-        Fight fight= new Fight();
+        Fight fight1= new Fight();
 
-        fight.fight(humans, zombies);
+        fight1.fight(humans, zombies, mapSize);
         System.out.println("ilość ludzi: " + humans.size());
         System.out.println("ilosc ludzi zabita przez zombie: " + Human.killedByZombie);
         System.out.println("liczba zombie: " + zombies.size());
@@ -266,7 +269,8 @@ public class Test {
         for(Human human : humans){
             System.out.println("human x: "+ human.x + " y: " + human.y);
         }
-
+        assertEquals(5, Human.killedByZombie);
+        assertEquals(8, Zombie.zombiePopulation);
     }
 }
 
