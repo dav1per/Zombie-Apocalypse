@@ -26,7 +26,7 @@ public class Fight {
                             }
 
                         if ((allCombatStatsZombies > allCombatStatsHumans) && humansCount !=0) {
-                            for (Human human1 : humansToRemowe) {
+                            for (Human human1 : humansToRemove) {
                                 human1.healthPoints = 0;
                                 Human.humanPopulation -= 1;
                                 humans.remove(human1);
