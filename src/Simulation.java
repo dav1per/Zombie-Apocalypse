@@ -83,7 +83,7 @@ public class Simulation {
         System.out.println("Ludzie zabici przez zombie: "+Human.killedByZombie);
         System.out.println("Ludzie zabici przez glod: "+Human.starvedToDeath);
         System.out.println("Zombie zabite przez ludzi: "+Zombie.killedByHuman);
-         */
+        */
     }
 
 
