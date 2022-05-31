@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class Zombie {
     static int zombiePopulation = 0;
+    static int killedByHuman = 0;
     int combatStat;
     int x, y;
     int visionRange;

@@ -244,8 +244,8 @@ public class Test {
     }
 
     @org.junit.jupiter.api.Test
-    public void Fightcheck(){
-       int mapSize = 7;
+    public void Fightcheck1(){
+        int mapSize = 7;
         ArrayList<Human> humans = new ArrayList<>();
         humans.add(new Human(30, 3, 2));
         humans.add(new Human(30, 2, 1));
@@ -262,15 +262,44 @@ public class Test {
         Fight fight1= new Fight();
 
         fight1.fight(humans, zombies, mapSize);
-        System.out.println("ilość ludzi: " + humans.size());
-        System.out.println("ilosc ludzi zabita przez zombie: " + Human.killedByZombie);
-        System.out.println("liczba zombie: " + zombies.size());
 
-        for(Human human : humans){
-            System.out.println("human x: "+ human.x + " y: " + human.y);
-        }
         assertEquals(5, Human.killedByZombie);
         assertEquals(8, Zombie.zombiePopulation);
+    }
+
+    @org.junit.jupiter.api.Test
+    public void Fightcheck2(){
+        int mapSize = 2;
+        ArrayList<Human> humans = new ArrayList<>();
+        humans.add(new Human(30, 0, 0));
+        humans.add(new Human(30, 0, 0));
+        humans.add(new Human(30, 1, 1));
+
+        ArrayList<Zombie> zombies = new ArrayList<>();
+        zombies.add(new Zombie(30, 0, 0));
+        zombies.add(new Zombie(30, 1, 0));
+
+        Fight fight1= new Fight();
+        fight1.fight(humans, zombies, mapSize);
+        assertEquals(1, Zombie.zombiePopulation);
+    }
+
+    @org.junit.jupiter.api.Test
+    public void Fightcheck3(){
+        int mapSize = 2;
+        ArrayList<Human> humans = new ArrayList<>();
+        humans.add(new Human(30, 0, 0));
+        humans.add(new Human(30, 0, 0));
+        humans.add(new Human(30, 1, 1));
+
+        ArrayList<Zombie> zombies = new ArrayList<>();
+        zombies.add(new Zombie(30, 0, 0));
+        zombies.add(new Zombie(40, 1, 1));
+
+        Fight fight1= new Fight();
+        fight1.fight(humans, zombies, mapSize);
+        assertEquals(2, Zombie.zombiePopulation);
+        assertEquals(2, Human.humanPopulation);
     }
 }
 
