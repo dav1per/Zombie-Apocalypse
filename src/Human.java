@@ -49,7 +49,7 @@ public class Human {
 
     public void selfCheck(){
         if(hungerPoints == 100){
-            healthPoints -= 1;
+            healthPoints -= 10;
         }
         if(hungerPoints == 0 && healthPoints < 100){
             healthPoints += 50;
@@ -77,7 +77,7 @@ public class Human {
     }
     public void getHungry(){
         if(hungerPoints < 100){
-            hungerPoints += 5;
+            hungerPoints += 10;
             if(hungerPoints > 100){
                 hungerPoints = 100;
             }
