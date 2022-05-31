@@ -246,22 +246,24 @@ public class Test {
     @org.junit.jupiter.api.Test
     public void Fightcheck1(){
         int mapSize = 7;
-        ArrayList<Human> humans = new ArrayList<>();
-        humans.add(new Human(30, 3, 2));
-        humans.add(new Human(30, 2, 1));
-        humans.add(new Human(30, 3, 2));
-        humans.add(new Human(30, 3, 2));
-        humans.add(new Human(30, 2, 1));
-        humans.add(new Human(30, 3, 1));
+        Zombie.zombiePopulation = 0;
+        Human.killedByZombie = 0;
+        ArrayList<Human> humans1 = new ArrayList<>();
+        humans1.add(new Human(30, 3, 2));
+        humans1.add(new Human(30, 2, 1));
+        humans1.add(new Human(30, 3, 2));
+        humans1.add(new Human(30, 3, 2));
+        humans1.add(new Human(30, 2, 1));
+        humans1.add(new Human(30, 3, 1));
 
-        ArrayList<Zombie> zombies = new ArrayList<>();
-        zombies.add(new Zombie(65, 2, 1));
-        zombies.add(new Zombie(95, 3, 2));
-        zombies.add(new Zombie(20, 4, 6));
+        ArrayList<Zombie> zombies1 = new ArrayList<>();
+        zombies1.add(new Zombie(65, 2, 1));
+        zombies1.add(new Zombie(95, 3, 2));
+        zombies1.add(new Zombie(20, 4, 6));
 
         Fight fight1= new Fight();
 
-        fight1.fight(humans, zombies, mapSize);
+        fight1.fight(humans1, zombies1, mapSize);
 
         assertEquals(5, Human.killedByZombie);
         assertEquals(8, Zombie.zombiePopulation);
@@ -269,6 +271,7 @@ public class Test {
 
     @org.junit.jupiter.api.Test
     public void Fightcheck2(){
+        Zombie.zombiePopulation = 0;
         int mapSize = 2;
         ArrayList<Human> humans = new ArrayList<>();
         humans.add(new Human(30, 0, 0));
@@ -286,6 +289,8 @@ public class Test {
 
     @org.junit.jupiter.api.Test
     public void Fightcheck3(){
+        Zombie.zombiePopulation = 0;
+        Human.humanPopulation = 0;
         int mapSize = 2;
         ArrayList<Human> humans = new ArrayList<>();
         humans.add(new Human(30, 0, 0));
@@ -296,7 +301,7 @@ public class Test {
         zombies.add(new Zombie(30, 0, 0));
         zombies.add(new Zombie(40, 1, 1));
 
-        Fight fight1= new Fight();
+        Fight fight1 = new Fight();
         fight1.fight(humans, zombies, mapSize);
         assertEquals(2, Zombie.zombiePopulation);
         assertEquals(2, Human.humanPopulation);

@@ -8,6 +8,7 @@ public class Simulation {
     int numberOfEpochs;
     int epoch = 0;
     Random rand = new Random();
+    Fight fight1 = new Fight();
     Area Map [][];
     Simulation(
             int humanPopulation,
@@ -44,6 +45,8 @@ public class Simulation {
         for(Zombie zombie : zombies){
             zombie.selfMove(Map, mapSize, humans);
         }
+
+        fight1.fight(humans, zombies, mapSize);
 
     }
 
