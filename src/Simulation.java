@@ -42,6 +42,18 @@ public class Simulation {
             human.humanEverydayRoutine(Map, mapSize);
         }
 
+        //checking if every human is alive
+        ArrayList<Human> humansToRemove = new ArrayList<>();
+        for(Human human : humans){
+            if(human.alive != true){
+                humansToRemove.add(human);
+            }
+        }
+        for(Human human1 : humansToRemove){
+            humans.remove(human1);
+        }
+        humansToRemove.clear();
+
         for(Zombie zombie : zombies){
             zombie.selfMove(Map, mapSize, humans);
         }
@@ -51,9 +63,27 @@ public class Simulation {
     }
 
     public void Simulation(){
-        while(epoch < numberOfEpochs + 1 && zombies.size() > 0 && humans.size() > 0){
+        /*
+        System.out.println("Statystyki poczatkowe");
+        System.out.println("Liczba epok: "+epoch);
+        System.out.println("Liczba ludzi: "+Human.humanPopulation);
+        System.out.println("Liczba zombie: "+Zombie.zombiePopulation);
+        System.out.println("Ludzie zabici przez zombie: "+Human.killedByZombie);
+        System.out.println("Ludzie zabici przez glod: "+Human.starvedToDeath);
+        System.out.println("Zombie zabite przez ludzi: "+Zombie.killedByHuman);
+         */
+        while(epoch < numberOfEpochs && zombies.size() > 0 && humans.size() > 0){
             Epoch();
         }
+        /*
+        System.out.println("Statystyki koncowe");
+        System.out.println("Liczba epok: "+epoch);
+        System.out.println("Liczba ludzi: "+Human.humanPopulation);
+        System.out.println("Liczba zombie: "+Zombie.zombiePopulation);
+        System.out.println("Ludzie zabici przez zombie: "+Human.killedByZombie);
+        System.out.println("Ludzie zabici przez glod: "+Human.starvedToDeath);
+        System.out.println("Zombie zabite przez ludzi: "+Zombie.killedByHuman);
+         */
     }
 
 

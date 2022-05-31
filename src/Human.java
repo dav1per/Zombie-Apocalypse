@@ -49,10 +49,10 @@ public class Human {
 
     public void selfCheck(){
         if(hungerPoints == 100){
-            healthPoints -= 10;
+            healthPoints -= 1;
         }
         if(hungerPoints == 0 && healthPoints < 100){
-            healthPoints += 5;
+            healthPoints += 50;
             if(healthPoints > 100){
                 healthPoints = 100;
             }
@@ -63,6 +63,7 @@ public class Human {
             starvedToDeath += 1;
         }
     }
+
     public void eatIfHungry(){
         if(hungerPoints > 0){
             while(backpack.size() > 0 && hungerPoints > 0){
@@ -76,7 +77,7 @@ public class Human {
     }
     public void getHungry(){
         if(hungerPoints < 100){
-            hungerPoints += 10;
+            hungerPoints += 5;
             if(hungerPoints > 100){
                 hungerPoints = 100;
             }
@@ -132,16 +133,20 @@ public class Human {
                 if(Math.pow(i - x, 2) + Math.pow(j - y, 2) < Math.pow(visionRange, 2)){
                     if(Objects.equals(Map[i][j].getType(), "House")) {
                         if (!(i == x && j == y)) {
+                            boolean uniqueHouse = true;
                             for(int c = 0; c < visitedHouses; c++){
-                                if(i != xVisitedHouses[c] && j != xVisitedHouses[c]){
-                                    //House found
-                                    houseFound = true;
-                                    distanceCheck = Math.sqrt(Math.pow(i - x, 2) + Math.pow(j - y, 2));
-                                    if (distanceCheck < objectiveDistance) {
-                                        xDestination = i;
-                                        yDestination = j;
-                                        objectiveDistance = distanceCheck;
+                                if(i == xVisitedHouses[c] && j == yVisitedHouses[c]){
+                                    uniqueHouse = false;
                                     }
+                                }
+                            if(uniqueHouse){
+                                //House found
+                                houseFound = true;
+                                distanceCheck = Math.sqrt(Math.pow(i - x, 2) + Math.pow(j - y, 2));
+                                if (distanceCheck < objectiveDistance) {
+                                    xDestination = i;
+                                    yDestination = j;
+                                    objectiveDistance = distanceCheck;
                                 }
                             }
                         }
@@ -369,11 +374,11 @@ public class Human {
     }
 
     public void humanEverydayRoutine(Area Map[][], int mapSize){
-        getHungry();
-        selfCheck();
         selfMove(Map, mapSize);
         lootHouses(Map);
         eatIfHungry();
+        getHungry();
+        selfCheck();
     }
 
 }

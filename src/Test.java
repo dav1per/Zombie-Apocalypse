@@ -113,6 +113,27 @@ public class Test {
     }
 
     @org.junit.jupiter.api.Test
+    public void HumanMoveTest_6() {
+        int mapSize = 4;
+        Area Map[][] = new Area[mapSize][mapSize];
+        for(int i = 0; i < mapSize; i++){
+            for(int j = 0; j < mapSize; j++){
+                Map[i][j] = new Land();
+            }
+        }
+        Map[0][0] = new House(2, 0.1);
+        Map[3][1] = new House(2, 0.1);
+
+        Human human1 = new Human(30, 3, 2);
+        for(int k = 0; k < 4; k++){
+            human1.selfMove(Map, mapSize);
+            human1.lootHouses(Map);
+        }
+        assertEquals(0, human1.y);
+        assertEquals(0, human1.x);
+    }
+
+    @org.junit.jupiter.api.Test
     public void HumanGetCombatStatTest1() {
         Human human1 = new Human(30, 0, 0);
         Assertions.assertEquals(30, human1.getCombatStat());
