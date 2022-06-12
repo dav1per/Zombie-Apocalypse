@@ -7,11 +7,11 @@ public class House extends Area{
     House(int lootAmountRange, double weaponLootPercentage){
         for(int i = 0; i < rand.nextInt(lootAmountRange) + 1; i++){
             if (rand.nextDouble() < weaponLootPercentage){
-                //Weapon combat stat 5 - 30
-                availableLoot.add(new Weapon(rand.nextInt(26) + 5));
+                //Weapon combat stat 5 - 105
+                availableLoot.add(new Weapon(rand.nextInt(101) + 5));
             }else{
-                //Food hunger points 75 - 90
-                availableLoot.add(new Food(rand.nextInt(76) + 15));
+                //Food hunger points 65 - 80
+                availableLoot.add(new Food(rand.nextInt(66) + 15));
             }
         }
     }

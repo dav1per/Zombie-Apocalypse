@@ -39,6 +39,11 @@ public class Simulation {
         //Creating a map
         Map map1 = new Map(mapSize, percentageOfHouses, houseLootAmountRange, houseWeaponLootPercentage);
         Map = map1.Generator();
+
+        //Super human test
+        /*
+        humans.add(new Human(250000, 0, 0));
+        */
     }
 
     public void Epoch(){

@@ -11,7 +11,7 @@ public class Human {
     int combatStat;
     int x, y;
     int healthPoints;
-    int hungerPoints;
+    float hungerPoints;
     int visionRange;
     int direction;
     int liftingCapacity = 5;
@@ -31,7 +31,7 @@ public class Human {
         humanPopulation += 1;
         healthPoints = 100;
         hungerPoints = 0;
-        visionRange = 10;
+        visionRange = 20;
         liftingCapacity = 5;
         direction = rand.nextInt(4);
         /*
@@ -77,7 +77,7 @@ public class Human {
     }
     public void getHungry(){
         if(hungerPoints < 100){
-            hungerPoints += 10;
+            hungerPoints += 0.01;
             if(hungerPoints > 100){
                 hungerPoints = 100;
             }
