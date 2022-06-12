@@ -24,11 +24,9 @@ public class Simulation {
             int houseLootAmountRange,
             double houseWeaponLootPercentage,
             int numberOfEpochs
-    )throws IOException{
+    ) {
         Human.killedByZombie =0;
         Zombie.zombiePopulation =0;
-        this.numberOfHumansInitially = humanPopulation;
-        this.numberOfZombieInitially = zombiePopulation;
         this.numberOfEpochs = numberOfEpochs;
         this.mapSize = mapSize;
         for(int i = 0; i < humanPopulation; i++){
@@ -70,35 +68,51 @@ public class Simulation {
 
     }
 
-    public void Simulation(FileWriter csvWriter)throws IOException{
-        /*
-        System.out.println("Statystyki poczatkowe");
-        System.out.println("Liczba epok: "+epoch);
-        System.out.println("Liczba ludzi: "+Human.humanPopulation);
-        System.out.println("Liczba zombie: "+Zombie.zombiePopulation);
-        System.out.println("Ludzie zabici przez zombie: "+Human.killedByZombie);
-        System.out.println("Ludzie zabici przez glod: "+Human.starvedToDeath);
-        System.out.println("Zombie zabite przez ludzi: "+Zombie.killedByHuman);
-         */
+    public void Simulation(String filename)throws IOException{
+        FileWriter csvWriter = new FileWriter(filename+".csv");
+        csvWriter.append("Epoch number");
+        csvWriter.append(",");
+        csvWriter.append("number of human population");
+        csvWriter.append(",");
+        csvWriter.append("number of humans killed by zombie");
+        csvWriter.append(",");
+        csvWriter.append("number of humans starved to death");
+        csvWriter.append(",");
+        csvWriter.append("number of zombie population");
+        csvWriter.append(",");
+        csvWriter.append("number of zombies killed by humans");
+        csvWriter.append("\n");
+
+        savingResults(epoch, Human.humanPopulation, Human.killedByZombie, Human.starvedToDeath, Zombie.zombiePopulation, Zombie.killedByHuman, csvWriter);
         while(epoch < numberOfEpochs && zombies.size() > 0 && humans.size() > 0){
             Epoch();
+            savingResults(epoch, Human.humanPopulation, Human.killedByZombie, Human.starvedToDeath, Zombie.zombiePopulation, Zombie.killedByHuman, csvWriter);
         }
-        /*
-        System.out.println("Statystyki koncowe");
-        System.out.println("Liczba epok: "+epoch);
-        System.out.println("Liczba ludzi: "+Human.humanPopulation);
-        System.out.println("Liczba zombie: "+Zombie.zombiePopulation);
-        System.out.println("Ludzie zabici przez zombie: "+Human.killedByZombie);
-        System.out.println("Ludzie zabici przez glod: "+Human.starvedToDeath);
-        System.out.println("Zombie zabite przez ludzi: "+Zombie.killedByHuman);
-        */
-        savingResults("data.csv", this.numberOfEpochs, this.numberOfHumansInitially , Human.humanPopulation, Human.killedByZombie, this.numberOfZombieInitially, Zombie.zombiePopulation, csvWriter);
+        csvWriter.flush();
+        csvWriter.close();
+        System.out.println("the data has been stored in the "+filename+".csv file");
+
 
     }
-    public static void savingResults(String fileName,int numberOfEpochs,int humansPopulationBefore, int humansPopulation,int humansKilledByZombie,int zombiePopulationBefore, int zombiePopulation, FileWriter csvWriter) throws IOException {
+    public static void savingResults(int epoch, int humanPopulation, int humansKilledByZombie, int humansStarvedToDeath, int zombiePopulation, int zombiesKilledByHumans, FileWriter csvWriter) throws IOException {
 
-        csvWriter.append(Integer.valueOf(numberOfEpochs).toString());
+        csvWriter.append(Integer.valueOf(epoch).toString());
         csvWriter.append(",");
+        csvWriter.append(Integer.valueOf(humanPopulation).toString());
+        csvWriter.append(",");
+        csvWriter.append(Integer.valueOf(humansKilledByZombie).toString());
+        csvWriter.append(",");
+        csvWriter.append(Integer.valueOf(humansStarvedToDeath).toString());
+        csvWriter.append(",");
+        csvWriter.append(Integer.valueOf(zombiePopulation).toString());
+        csvWriter.append(",");
+        csvWriter.append(Integer.valueOf(zombiesKilledByHumans).toString());
+        csvWriter.append(",");
+        csvWriter.append("\n");
+
+
+
+        /*
         csvWriter.append(Integer.valueOf(humansPopulationBefore).toString());
         csvWriter.append(",");
         csvWriter.append(Integer.valueOf(humansPopulation).toString());
@@ -109,6 +123,8 @@ public class Simulation {
         csvWriter.append(",");
         csvWriter.append(Integer.valueOf(zombiePopulation).toString());
         csvWriter.append("\n");
+        */
+
 
     }
 
