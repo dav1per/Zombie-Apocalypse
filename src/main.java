@@ -5,8 +5,19 @@ Igor Wlodarczyk
  */
 import java.io.IOException;
 
-
+/**
+ * This class main is the main class in project.
+ * There is main method.
+ */
 public class main {
+
+    /**
+     * This method named main is where the entire simulation is turned on.
+     * @param args String array. Is compulsory in main
+     *             method in java in order to receive
+     *             the parameters for the input.
+     * @throws IOException
+     */
     public static void main(String[] args) throws IOException {
         Simulation simulation1 = new Simulation(
                 10150,

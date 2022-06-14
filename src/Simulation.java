@@ -3,6 +3,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * This class Simulation is where the whole simulation is creating.
+ */
 public class Simulation {
     ArrayList<Human> humans = new ArrayList<>();
     ArrayList<Zombie> zombies = new ArrayList<>();
@@ -13,6 +16,21 @@ public class Simulation {
     Random rand = new Random();
     Fight fight1 = new Fight();
     Area Map [][];
+
+    /**
+     * Constructor Simulation which saving data provided by the user
+     * and create zombie, humans and map.
+     *
+     * @param humanPopulation Number of human population.
+     * @param zombiePopulation Number of zombie population.
+     * @param mapSize Number of map size.
+     * @param humanCombatStat Number of human combat stats.
+     * @param zombieCombatStat Number of zombie combat stats.
+     * @param percentageOfHouses Number of percentage of houses.
+     * @param houseLootAmountRange Number of loot amount range.
+     * @param houseWeaponLootPercentage Number of house weapon loot percentage.
+     * @param numberOfEpochs Number of epochs.
+     */
     Simulation(
             int humanPopulation,
             int zombiePopulation,
@@ -46,6 +64,9 @@ public class Simulation {
          */
     }
 
+    /**
+     * This method named Epoch is for creating movement in every epoch.
+     */
     public void Epoch(){
         //Epoch counter
         epoch += 1;
@@ -73,6 +94,11 @@ public class Simulation {
 
     }
 
+    /**
+     * This method named Simulation is creating epochs and saving results to the file.
+     * @param filename String with name of file where results are saved.
+     * @throws IOException
+     */
     public void Simulation(String filename)throws IOException{
         FileWriter csvWriter = new FileWriter(filename+".csv");
         csvWriter.append("Epoch number");
@@ -99,6 +125,18 @@ public class Simulation {
 
 
     }
+
+    /**
+     * This method named savingResults is for saving results every epoch.
+     * @param epoch Number of actually epoch.
+     * @param humanPopulation Number of human population.
+     * @param humansKilledByZombie Number of humans killed by zombie.
+     * @param humansStarvedToDeath Number of humans starved to death.
+     * @param zombiePopulation Number of zombie population.
+     * @param zombiesKilledByHumans Number of zombie killed by humans.
+     * @param csvWriter File writer necessary to saving results.
+     * @throws IOException
+     */
     public static void savingResults(int epoch, int humanPopulation, int humansKilledByZombie, int humansStarvedToDeath, int zombiePopulation, int zombiesKilledByHumans, FileWriter csvWriter) throws IOException {
 
         csvWriter.append(Integer.valueOf(epoch).toString());
@@ -114,25 +152,5 @@ public class Simulation {
         csvWriter.append(Integer.valueOf(zombiesKilledByHumans).toString());
         csvWriter.append(",");
         csvWriter.append("\n");
-
-
-
-        /*
-        csvWriter.append(Integer.valueOf(humansPopulationBefore).toString());
-        csvWriter.append(",");
-        csvWriter.append(Integer.valueOf(humansPopulation).toString());
-        csvWriter.append(",");
-        csvWriter.append(Integer.valueOf(humansKilledByZombie).toString());
-        csvWriter.append(",");
-        csvWriter.append(Integer.valueOf(zombiePopulationBefore).toString());
-        csvWriter.append(",");
-        csvWriter.append(Integer.valueOf(zombiePopulation).toString());
-        csvWriter.append("\n");
-        */
-
-
     }
-
-
-
 }

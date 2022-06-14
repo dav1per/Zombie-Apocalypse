@@ -1,8 +1,20 @@
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * This class Fight is for creating fight when zombie and human are at the same place.
+ */
 public class Fight {
     Random rand = new Random();
+
+    /**
+     * This method named fight is where the coordinates of zombies and people are checked and,
+     * in the case of the same places, a fight is carried out.
+     *
+     * @param humans is ArrayList from which the coordinates of humans are fetched.
+     * @param zombies is ArrayList from which the coordinates of zombie are fetched.
+     * @param mapSize size of simulation's map, necessary to check if the coordinates fit on the map.
+     */
     public void fight(ArrayList<Human> humans, ArrayList<Zombie> zombies, int mapSize){
         int newZombie=0;
         int allCombatStatsZombies = 0;
@@ -61,6 +73,15 @@ public class Fight {
             }
 
     }
+
+    /**
+     * This method named fight_2 is new fight model, where zombies/humans are allowed to take revenge kills
+     *
+     * @param humans is ArrayList from which the coordinates of humans are fetched.
+     * @param zombies is ArrayList from which the coordinates of zombie are fetched.
+     * @param mapSize size of simulation's map, necessary to check if the coordinates fit on the map.
+     * @param zombieCombatStat Number of zombie combat stats.
+     */
     //New fight model, where zombies/humans are allowed to take revenge kills
     public void fight_2(ArrayList<Human> humans, ArrayList<Zombie> zombies, int mapSize, int zombieCombatStat){
         double combatStatMap[][] = new double[mapSize][mapSize];

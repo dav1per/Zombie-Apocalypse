@@ -3,7 +3,9 @@ import java.util.Objects;
 import java.util.Random;
 import java.lang.Math;
 
-
+/**
+ * This class Human is for creating humans and their lives.
+ */
 public class Human {
     static int humanPopulation = 0;
     static int killedByZombie = 0;
@@ -24,6 +26,12 @@ public class Human {
     int xVisitedHouses[] = new int [visitedHouses];
     int yVisitedHouses[] = new int [visitedHouses];
 
+    /**
+     * Constructor Human is for saving data that is transferred to an individual human.
+     * @param combatStat number of combat stats.
+     * @param x number of the x human's location on the map.
+     * @param y number of the y human's location on the map.
+     */
     Human(int combatStat, int x, int y){
         this.combatStat = combatStat;
         this.x = x;
@@ -47,6 +55,9 @@ public class Human {
         }
     }
 
+    /**
+     * This method named selfCheck is for checking human's hunger and health points.
+     */
     public void selfCheck(){
         if(hungerPoints == 100){
             healthPoints -= 10;
@@ -64,6 +75,9 @@ public class Human {
         }
     }
 
+    /**
+     * This method named eatIfHungry is for checking hunger points and feeding humans if they have food.
+     */
     public void eatIfHungry(){
         if(hungerPoints > 0){
             while(backpack.size() > 0 && hungerPoints > 0){
@@ -75,6 +89,10 @@ public class Human {
             }
         }
     }
+
+    /**
+     * This method named getHungry is for checking hunger points and updating it.
+     */
     public void getHungry(){
         if(hungerPoints < 100){
             hungerPoints += 0.05;
@@ -84,6 +102,11 @@ public class Human {
         }
     }
 
+    /**
+     * This method named lootHouses is for collecting item from houses.
+     *
+     * @param Map Array with types of area.
+     */
     public void lootHouses(Area Map[][]){
         if(Map[x][y].getType() == "House"){
             ArrayList<Item> availableLoot = Map[x][y].getAvailableLoot();
@@ -115,10 +138,19 @@ public class Human {
         }
     }
 
+    /**
+     * This method named getCombatStat is for returning human's combat stats.
+     * @return human's combat stats.
+     */
     public double getCombatStat(){
         return combatStat * healthPoints / 100 + weapon.combatStat;
     }
 
+    /**
+     * This methode named selfMove is responsible for human's move to the nearest house.
+     * @param Map map in which humans can move, Array with types of area.
+     * @param mapSize size od simulation's map.
+     */
     public void selfMove(Area Map[][], int mapSize){
         int xDestination = 0, yDestination = 0;
         double objectiveDistance = Math.sqrt((mapSize * mapSize) * 2);
@@ -373,6 +405,11 @@ public class Human {
 
     }
 
+    /**
+     * This method named humanEverydayRoutine is for calling other methods from class Human.
+     * @param Map map in which humans can move, Array with types of area.
+     * @param mapSize size od simulation's map.
+     */
     public void humanEverydayRoutine(Area Map[][], int mapSize){
         selfMove(Map, mapSize);
         lootHouses(Map);
