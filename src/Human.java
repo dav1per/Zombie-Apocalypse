@@ -31,7 +31,7 @@ public class Human {
         humanPopulation += 1;
         healthPoints = 100;
         hungerPoints = 0;
-        visionRange = 20;
+        visionRange = 30;
         liftingCapacity = 5;
         direction = rand.nextInt(4);
         /*
@@ -77,7 +77,7 @@ public class Human {
     }
     public void getHungry(){
         if(hungerPoints < 100){
-            hungerPoints += 0.01;
+            hungerPoints += 0.05;
             if(hungerPoints > 100){
                 hungerPoints = 100;
             }
@@ -116,7 +116,7 @@ public class Human {
     }
 
     public double getCombatStat(){
-        return (combatStat + weapon.combatStat) * healthPoints / 100;
+        return combatStat * healthPoints / 100 + weapon.combatStat;
     }
 
     public void selfMove(Area Map[][], int mapSize){

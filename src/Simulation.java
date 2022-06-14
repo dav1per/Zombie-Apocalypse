@@ -9,8 +9,7 @@ public class Simulation {
     int mapSize;
     int numberOfEpochs;
     int epoch = 0;
-    int numberOfZombieInitially;
-    int numberOfHumansInitially;
+    int zombieCombatStat;
     Random rand = new Random();
     Fight fight1 = new Fight();
     Area Map [][];
@@ -29,6 +28,7 @@ public class Simulation {
         Zombie.zombiePopulation =0;
         this.numberOfEpochs = numberOfEpochs;
         this.mapSize = mapSize;
+        this.zombieCombatStat = zombieCombatStat;
         for(int i = 0; i < humanPopulation; i++){
             humans.add(new Human(humanCombatStat, rand.nextInt(mapSize), rand.nextInt(mapSize)));
         }
@@ -40,10 +40,10 @@ public class Simulation {
         Map map1 = new Map(mapSize, percentageOfHouses, houseLootAmountRange, houseWeaponLootPercentage);
         Map = map1.Generator();
 
-        //Super human test
         /*
+        Super human test
         humans.add(new Human(250000, 0, 0));
-        */
+         */
     }
 
     public void Epoch(){
@@ -69,7 +69,7 @@ public class Simulation {
             zombie.selfMove(Map, mapSize, humans);
         }
 
-        fight1.fight(humans, zombies, mapSize);
+        fight1.fight_2(humans, zombies, mapSize, zombieCombatStat);
 
     }
 

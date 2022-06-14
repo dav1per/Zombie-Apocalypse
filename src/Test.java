@@ -149,7 +149,7 @@ public class Test {
             human1.getHungry();
             human1.selfCheck();
         }
-        Assertions.assertEquals(27, human1.getCombatStat());
+        Assertions.assertEquals(30, human1.getCombatStat());
     }
 
     @org.junit.jupiter.api.Test
@@ -210,12 +210,6 @@ public class Test {
 
     }
 
-    @org.junit.jupiter.api.Test
-    public void HumanGetHungry1() {
-        Human human1 = new Human(25, 0, 0);
-        human1.getHungry();
-        Assertions.assertEquals(10, human1.hungerPoints);
-    }
 
     @org.junit.jupiter.api.Test
     public void HumanEat1() {
@@ -248,23 +242,6 @@ public class Test {
         assertEquals(6, zombie1.y);
         assertEquals(3, zombie1.x);
 
-    }
-
-    @org.junit.jupiter.api.Test
-    public void SimulationTest1() throws IOException {
-        Simulation simulation1 = new Simulation(
-                1,
-                0,
-                1,
-                30,
-                30,
-                0.50,
-                5,
-                0.1,
-                5000
-        );
-        //simulation1.Simulation();
-        //assertEquals(0, simulation1.epoch);
     }
 
     @org.junit.jupiter.api.Test

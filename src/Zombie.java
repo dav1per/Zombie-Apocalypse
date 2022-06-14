@@ -14,7 +14,7 @@ public class Zombie {
         this.x = x;
         this.y = y;
         zombiePopulation += 1;
-        visionRange = 80;
+        visionRange = 40;
 
     }
     public void selfMove(Area Map[][], int mapSize, ArrayList <Human> humans) {
