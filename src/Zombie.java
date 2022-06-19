@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+ * This class Zombie is for creating zombie and their lives.
+ */
 
 public class Zombie {
     static int zombiePopulation = 0;
@@ -9,6 +12,14 @@ public class Zombie {
     int x, y;
     int visionRange;
 
+
+    /**
+     * Constructor which sets the parameters provided by the user and increase zombie population.
+     *
+     * @param combatStat sets zombie's combat stats.
+     * @param x number of the x zombie's location on the map.
+     * @param y number of the y zombie's location on the map.
+     */
     Zombie(int combatStat, int x, int y) {
         this.combatStat = combatStat;
         this.x = x;
@@ -17,6 +28,16 @@ public class Zombie {
         visionRange = 40;
 
     }
+
+
+
+    /**
+     * This methode named selfMove is responsible for zombie's move to the nearest human.
+     * @param Map simulation's map where zombie can move, Array with types of area.
+     * @param mapSize size of simulation's map.
+     * @param humans ArrayList of humans, necessary to check where the nearest human is.
+     */
+
     public void selfMove(Area Map[][], int mapSize, ArrayList <Human> humans) {
         int xHumanLocation, yHumanLocation;
         int xTheNearestHuman = 101, yTheNearestHuman = 101;
