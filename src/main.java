@@ -1,7 +1,6 @@
-/*
-Grupa: abc123
-Wiktoria Majewska
-Igor Wlodarczyk
+/**
+ * @author Wiktoria Majewska, Igor Wlodarczyk
+ * Grupa: abc123
  */
 
 import java.io.IOException;
@@ -23,6 +22,9 @@ public class main {
     static double houseWeaponLootPercentage = 0.1;
     static int numberOfEpochs = 5000;
 
+    /**
+     * This method named menu is responsible for displaying the menu.
+     */
     public static void menu(){
         System.out.println(" Menu");
         System.out.println("1. Start simulation");
@@ -31,6 +33,9 @@ public class main {
         System.out.println("4. Exit");
     }
 
+    /**
+     * This method named showParameters is responsible for displaying current parameters.
+     */
     public static void showParameters(){
         System.out.println("humanPopulation = " + humanPopulation);
         System.out.println("zombiePopulation = " + zombiePopulation);
@@ -43,6 +48,10 @@ public class main {
         System.out.println("numberOfEpochs = " + numberOfEpochs);
     }
 
+    /**
+     * This methode named changeParameters is responsible for changing parameters
+     * from current to those given by the user.
+     */
     public static void changeParameters(){
         Scanner scan = new Scanner(System.in);
         System.out.println("current humanPopulation = " + humanPopulation);
