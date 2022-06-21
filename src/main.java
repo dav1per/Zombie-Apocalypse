@@ -135,22 +135,6 @@ public class main {
             }
         }
 
-
-
-        /*
-        Simulation simulation1 = new Simulation(
-                10150,
-                30,
-                100,
-                15,
-                50,
-                0.20,
-                25,
-                0.1,
-                5000);
-        simulation1.Simulation("symulacja1");
-
-         */
     }
 
 
