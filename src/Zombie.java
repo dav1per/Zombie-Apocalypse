@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Random;
 
 /**
  * This class Zombie is for creating zombie and their lives.
@@ -160,6 +161,28 @@ public class Zombie {
                 }
                 x = xCheck;
                 y = yCheck;
+        }else{
+            //Random zombie move
+            Random rand = new Random();
+            if(rand.nextInt(2) == 0) {
+                boolean incorrectXY = true;
+                int newX = x;
+                int newY = y;
+                while(incorrectXY){
+                    newX += (rand.nextInt(3) - 1);
+                    newY += (rand.nextInt(3) - 1);
+
+                    if(newX < mapSize && newX > 0 && newY < mapSize && newY > 0){
+                        incorrectXY = false;
+                        x = newX;
+                        y = newY;
+                    }else{
+                        newX = x;
+                        newY = y;
+                    }
+                }
+            }
+
         }
     }
 }

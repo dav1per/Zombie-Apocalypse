@@ -13,10 +13,10 @@ import java.util.Scanner;
  */
 public class main {
 
-    static int humanPopulation = 10150;
-    static int zombiePopulation = 30;
+    static int humanPopulation = 10000;
+    static int zombiePopulation = 35;
     static int mapSize = 100;
-    static int humanCombatStat = 15;
+    static int humanCombatStat = 30;
     static int zombieCombatStat = 50;
     static double percentageOfHouses = 0.20;
     static int houseLootAmountRange = 25;
